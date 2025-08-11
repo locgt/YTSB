@@ -1,0 +1,291 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 1rem;
+}
+
+p {
+    color: #555;
+}
+
+/* --- Header and Controls --- */
+.main-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.controls {
+    display: flex;
+    gap: 0.5rem;
+}
+
+#add-clip-btn, #add-divider-btn, #import-btn, #export-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+#add-clip-btn {
+    background-color: #28a745;
+}
+#add-clip-btn:hover {
+    background-color: #218838;
+}
+
+#add-divider-btn {
+    background-color: #007bff;
+}
+#add-divider-btn:hover {
+    background-color: #0056b3;
+}
+
+#import-btn {
+    background-color: #e89f23; /* Orange */
+}
+#import-btn:hover {
+    background-color: #d39220;
+}
+
+#export-btn {
+    background-color: #563d7c; /* Purple */
+}
+#export-btn:hover {
+    background-color: #463164;
+}
+
+/* --- Sound Grid and Items --- */
+.sound-grid {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.sound-grid button {
+    position: relative; /* Needed for positioning the loop badge */
+    font-size: 0.9rem;
+    padding: 15px 5px;
+    border-radius: 8px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    transition: background-color 0.2s, transform 0.1s;
+    word-break: break-word;
+    min-height: 60px;
+}
+
+.sound-grid button:hover {
+    background-color: #0056b3;
+}
+
+.sound-grid button:active {
+    transform: scale(0.95);
+}
+
+.sound-grid button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.sound-grid button.playing {
+    background-color: #ffc107;
+    color: #333;
+    font-weight: bold;
+    box-shadow: 0 0 10px #ffc107;
+}
+
+/* NEW: Style for the loop badge on buttons */
+.loop-badge {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: grid;
+    place-content: center;
+    font-size: 1rem;
+    cursor: pointer;
+    line-height: 1;
+    z-index: 2; /* Ensure it's above the button text */
+}
+
+.loop-badge:hover {
+    background-color: rgba(0,0,0,0.7);
+}
+
+
+/* --- Dividers --- */
+.divider-row {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    cursor: grab;
+}
+
+.divider-row:active {
+    cursor: grabbing;
+}
+
+.divider-name {
+    flex-grow: 1;
+    font-weight: bold;
+    color: #495057;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.delete-divider-btn {
+    background: none;
+    border: none;
+    color: #6c757d;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0 10px;
+}
+
+.delete-divider-btn:hover {
+    color: #dc3545;
+}
+
+
+/* --- Drag and Drop --- */
+.dragging {
+    opacity: 0.5;
+    background: #cce5ff;
+}
+
+/* --- Edit Modal --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: grid;
+    place-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-content h2 {
+    margin-top: 0;
+}
+
+#edit-form {
+    display: grid;
+    gap: 1rem;
+}
+
+#edit-form label {
+    font-weight: bold;
+    text-align: left;
+}
+
+#edit-form input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+/* NEW: Style for aligning the loop checkbox and its label */
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.form-row input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.modal-actions.import-options {
+    justify-content: space-between;
+}
+
+
+.modal-actions button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.save-btn {
+    background-color: #28a745;
+    color: white;
+}
+.save-btn:hover {
+    background-color: #218838;
+}
+
+.cancel-btn {
+    background-color: #6c757d;
+    color: white;
+}
+.cancel-btn:hover {
+    background-color: #5a6268;
+}
+
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+
+#edit-modal .delete-btn {
+    margin-right: auto;
+}
+
+.delete-btn:hover {
+    background-color: #c82333;
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Player Container --- */
+#player-container {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}

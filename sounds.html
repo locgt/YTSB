@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Soundboard</title>
+    <link rel="stylesheet" href="sounds.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <h1>🎬 YouTube Soundboard</h1>
+        <div class="controls">
+            <button id="add-clip-btn" title="Add new sound clip">+</button>
+            <button id="add-divider-btn" title="Add section divider">+-</button>
+            <button id="export-btn" title="Export layout to file">📥</button>
+            <button id="import-btn" title="Import layout from file">📤</button>
+        </div>
+    </header>
+    
+    <p>
+        <strong>Drag & Drop</strong> to reorder. <strong>Right-click</strong> to edit.
+    </p>
+
+    <div id="sound-grid" class="sound-grid"></div>
+
+    <input type="file" id="import-file-input" class="hidden" accept="application/json">
+    
+    <div id="player-container"></div>
+
+    <div id="edit-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2 id="modal-title">Edit Sound Clip</h2>
+            <form id="edit-form">
+                <label for="clip-name">Name</label>
+                <input type="text" id="clip-name" required>
+                <label for="clip-videoid">YouTube Video ID</label>
+                <input type="text" id="clip-videoid">
+                <label for="clip-starttime">Start Time (sec)</label>
+                <input type="number" id="clip-starttime" step="any">
+                <label for="clip-endtime">End Time (sec)</label>
+                <input type="number" id="clip-endtime" step="any">
+                
+                <div class="form-row">
+                    <label for="clip-loop">Loop Sound?</label>
+                    <input type="checkbox" id="clip-loop">
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="delete-btn">Delete</button>
+                    <button type="submit" class="save-btn">Save</button>
+                    <button type="button" class="cancel-btn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="import-options-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <h2>Import Options</h2>
+            <p>A valid layout file was found. How would you like to import the sounds?</p>
+            <div class="modal-actions import-options">
+                <button id="import-append-btn" class="save-btn">Append</button>
+                <button id="import-overwrite-btn" class="delete-btn">Overwrite</button>
+                <button id="import-cancel-btn" class="cancel-btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="sounds.js"></script>
+
+</body>
+</html>
