@@ -32,10 +32,9 @@ function loadLayout() {
   let savedData = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
   if (savedData.length === 0) {
       savedData = [
-          { type: 'clip', name: "Leeroy Jenkins", videoId: 'M5QY2_8704o', startTime: 7, endTime: 9, loop: false },
-          { type: 'divider', name: 'Meme Sounds' },
-          { type: 'clip', name: "It's a Trap!", videoId: '4F4qzPbcFiA', startTime: 25, endTime: 26, loop: false },
-          { type: 'clip', name: "Looping Lofi", videoId: '5qap5aO4i9A', startTime: 0, endTime: 0, loop: true },
+          { type: 'divider', name: 'Spooky Sounds' },
+		  { type: 'clip', name: "Wilhelm Scream", videoId: 'PP7WJL2JtLs', startTime: 0, endTime: 0, loop: false },
+          { type: 'clip', name: "Spooky Forest", videoId: 'dxPgHs7CEQA', startTime: 0, endTime: 0, loop: true },
       ];
   }
   soundData = migrateData(savedData);
